@@ -42,7 +42,7 @@ class CartController extends Controller
         $game = Game::orderBy('id')->get();
 
         return view('backend.v_cart.create', [
-            'judul' => 'Add Country',
+            'judul' => 'Add Cart',
             'user' => $user,
             'game' => $game
         ]);

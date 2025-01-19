@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('image/cavely1.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('image/cavely2.png') }}">
     <title>Cavely</title>
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="{{ asset('backend/extra-libs/multicheck/multicheck.css') }}">
@@ -403,7 +403,7 @@
         <div class="mx-5 kaki">
             <div class="row">
                 <div class="col-lg-3 col-md-6 text-center" style="background-color: #D9D9D9">
-                    <img src="{{ asset('image/cavely1.png') }}" alt="" width="200" height="200">
+                    <img src="{{ asset('image/cavely2.png') }}" alt="" width="200" height="200">
                 </div>
                 <div class="col-lg-9 col-md-6 mt-3">
                     <table>

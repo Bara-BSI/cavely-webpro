@@ -42,7 +42,7 @@ class GameController extends Controller
     {        
         $genre = Genre::orderBy('nama_genre')->get();
         return view('backend.v_game.create', [
-            'judul' => 'Add User',
+            'judul' => 'Add Game',
             'genres' => $genre
         ]);
     }
