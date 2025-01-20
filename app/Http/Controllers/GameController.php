@@ -145,6 +145,12 @@ class GameController extends Controller
     public function destroy(Game $game)
     {
         $game = Game::findOrFail($game->id);
+
+        $game_medias = Game_Media::where('games_id', $game->id)->get();
+        foreach ($game_medias as $media) {
+            $media->delete();
+        }
+
         $game_genre = Game_Genre::where('games_id', $game->id)->get();
         foreach ($game_genre as $genre) {
             Game_Genre::where('games_id', $game->id)->where('genres_id', $genre->genres_id)->delete();
