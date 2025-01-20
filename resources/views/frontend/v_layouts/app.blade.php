@@ -327,7 +327,7 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownSignIn">
                             <div class="container d-flex">
-                                <a class="dropdown-item ddi1 mr-2" href="#">CREATE ACCOUNT</a>
+                                <a class="dropdown-item ddi1 mr-2" href="{{ route('frontend.user.create') }}">CREATE ACCOUNT</a>
                                 <a class="dropdown-item ddi2" href="{{ route('backend.login') }}">SIGN IN</a>
                             </div>
                         </div>

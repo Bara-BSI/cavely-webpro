@@ -6,6 +6,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\frontendCartController;
 use App\Http\Controllers\frontendCheckoutController;
+use App\Http\Controllers\frontendUserController;
 use App\Http\Controllers\Game_MediaController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\GenreController;
@@ -86,3 +87,5 @@ Route::resource('frontend/cart', frontendCartController::class, ['as' => 'fronte
 Route::resource('frontend/checkout', frontendCheckoutController::class, ['as' => 'frontend'])->middleware('auth');
 
 Route::delete('/reviews/{games_id}/{users_id}', [ReviewController::class, 'destroy'])->name('review.delete')->middleware('auth');
+
+Route::resource('frontend/user', frontendUserController::class, ['as' => 'frontend']);

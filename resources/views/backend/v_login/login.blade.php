@@ -161,8 +161,10 @@
                                                 <div class="col-2"></div>
                                                 <div class="col-4">
                                                     <div class="form-group">
-                                                        <div class="text-center">
-                                                            <button class="btn btn-transparent" id="create-account" type="button"><u>Create Account</u></button>
+                                                        <div class="text-center">                                                            
+                                                            <a href="{{ route('frontend.user.create') }}" class="btn btn-transparent">
+                                                                <u>Create Account</u>
+                                                            </a>
                                                         </div>
                                                     </div>
                                                 </div>

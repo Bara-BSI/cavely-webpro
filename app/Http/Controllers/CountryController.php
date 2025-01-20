@@ -94,7 +94,7 @@ class CountryController extends Controller
     {
         $country = Country::findOrFail($country->id);
         $rules = [
-            'nama_negara' => 'required|max:255|unique:countries',
+            'nama_negara' => 'required|max:255',
             'regions_id' => 'required|exists:regions,id',
         ];
         $messages = [

@@ -71,9 +71,15 @@
                                         </h3>
                                     </div>
                                     <div class="col-2 my-auto">
-                                        <a href="">
-                                            <i class="fa fa-cart-plus text-xl text-white"></i>
-                                        </a>
+                                        <form action="{{ route('frontend.cart.store') }}" method="post" class="form-horizontal" enctype="multipart/form-data">
+                                            @csrf
+                                            <input type="hidden" name="games_id" value="{{ $games->id }}">
+                                            <input type="hidden" name="users_id" value="@if (Auth::check())
+                                                {{ Auth::user()->id }}
+                                            @endif">
+                                            <input type="hidden" name="jumlah" value="1">
+                                            <button type="submit" style="background-color: rgb(0,0,0,0); border:none; cursor:pointer"><i class="fa fa-cart-plus text-xl text-white"></i></button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -99,9 +105,15 @@
                                         </h3>
                                     </div>
                                     <div class="col-2 my-auto">
-                                        <a href="">
-                                            <i class="fa fa-cart-plus text-xl text-white"></i>
-                                        </a>
+                                        <form action="{{ route('frontend.cart.store') }}" method="post" class="form-horizontal" enctype="multipart/form-data">
+                                            @csrf
+                                            <input type="hidden" name="games_id" value="{{ $games->id }}">
+                                            <input type="hidden" name="users_id" value="@if (Auth::check())
+                                                {{ Auth::user()->id }}
+                                            @endif">
+                                            <input type="hidden" name="jumlah" value="1">
+                                            <button type="submit" style="background-color: rgb(0,0,0,0); border:none; cursor:pointer"><i class="fa fa-cart-plus text-xl text-white"></i></button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -183,9 +195,15 @@
                                         </h4>
                                     </div>
                                     <div class="col-1 my-1 mx-auto">
-                                        <a href="">
-                                            <h4><i class="fa fa-cart-plus text-white"></i></h4>
-                                        </a>
+                                        <form action="{{ route('frontend.cart.store') }}" method="post" class="form-horizontal" enctype="multipart/form-data">
+                                            @csrf
+                                            <input type="hidden" name="games_id" value="{{ $games->id }}">
+                                            <input type="hidden" name="users_id" value="@if (Auth::check())
+                                                {{ Auth::user()->id }}
+                                            @endif">
+                                            <input type="hidden" name="jumlah" value="1">
+                                            <button type="submit" style="background-color: rgb(0,0,0,0); border:none; cursor:pointer"><i class="fa fa-cart-plus text-white"></i></button>
+                                        </form>
                                     </div>
                                     <div class="col-12 my-auto">
                                         <div class="row">
@@ -257,9 +275,15 @@
                                         </h4>
                                     </div>
                                     <div class="col-1 my-1 mx-auto">
-                                        <a href="">
-                                            <h4><i class="fa fa-cart-plus text-white"></i></h4>
-                                        </a>
+                                        <form action="{{ route('frontend.cart.store') }}" method="post" class="form-horizontal" enctype="multipart/form-data">
+                                            @csrf
+                                            <input type="hidden" name="games_id" value="{{ $games->id }}">
+                                            <input type="hidden" name="users_id" value="@if (Auth::check())
+                                                {{ Auth::user()->id }}
+                                            @endif">
+                                            <input type="hidden" name="jumlah" value="1">
+                                            <button type="submit" style="background-color: rgb(0,0,0,0); border:none; cursor:pointer"><i class="fa fa-cart-plus text-white"></i></button>
+                                        </form>
                                     </div>
                                     <div class="col-12 my-auto">
                                         <div class="row">

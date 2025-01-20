@@ -43,7 +43,7 @@ class frontendCartController extends Controller
     public function store(Request $request)
     {
         if (!Auth::check()){
-            return redirect()->route('backend.login')->with('error', 'You have to login first');
+            return back()->with('error', 'You have to login first');
         }
         // dd($request);
         $validatedData['id'] = Null;

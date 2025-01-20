@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 19, 2025 at 09:10 AM
+-- Generation Time: Jan 20, 2025 at 10:26 AM
 -- Server version: 11.6.2-MariaDB
 -- PHP Version: 8.3.15
 
@@ -83,7 +83,7 @@ CREATE TABLE `countries` (
 --
 
 INSERT INTO `countries` (`id`, `nama_negara`, `regions_id`) VALUES
-(1, 'Indonesia', 1),
+(1, 'Indonesia', 3),
 (2, 'Malaysia', 1),
 (3, 'Russia', 2),
 (4, 'Japan', 3);
@@ -299,14 +299,16 @@ INSERT INTO `users` (`id`, `nama`, `email`, `role`, `status`, `password`, `hp`, 
 (1, 'admin', 'admin@gmail.com', 0, 1, '$2y$12$6ASeB2gGeuYQsX1dlz75z.PwVE6PqOskkdXZvkmHYklIrM8vZ9Q46', '081234567890', NULL, '2000-01-01', 1),
 (2, 'BARESCRIM', 'bara@gmail.com', 1, 1, '$2y$12$X7vgLdirffS58sX8ReV8QO1diRaVJUXMnjjB6sb3tMWvtyMcuHkum', '081234567890', '20250115145903_67876ac796ca3.png', '2000-01-01', 1),
 (3, 'restu', 'restu@gmail.com', 2, 1, '$2y$12$w6GN/TwtH1DdrN9f2zzci.x28dcEiQgG23uMOWdo62OV5A9y/tOXW', '081234567890', NULL, '2000-01-01', 1),
-(4, 'chris', 'chris@gmail.com', 2, 0, '$2y$12$SJJTE3fwdJWH/eNlHOCbC.3Z1em6lZzrgN2.jnqt2Nr89SK4Aka2a', '081234567890', NULL, '2000-01-01', 1),
+(4, 'chris', 'chris@gmail.com', 2, 1, '$2y$12$SJJTE3fwdJWH/eNlHOCbC.3Z1em6lZzrgN2.jnqt2Nr89SK4Aka2a', '081234567890', NULL, '2000-01-01', 1),
 (5, 'Mochi', 'mochi@gmail.com', 2, 0, '$2y$12$OoPzoH.qGO/n/4ry1/pyyeZHTAWNEdVNOm2A5WNu4DHXKJmj3UWRO', '1010101010', '20241210221720_67585b8084ea1.jpg', '2024-12-12', 4),
 (6, 'OMOCAT', 'omocat@gmail.com', 1, 1, '$2y$12$gJzTN25SqMnRbFodWPcSAO3l6jKHZ1R6gGEri/FWjKVRZSIWqkcOm', '095236541255', '20250119141107_678ca58b90bd7.jpg', '2021-03-02', 2),
 (7, 'Boris', 'boris@gmail.com', 2, 0, '$2y$12$AHq4CyhbON29MbOxwlIVFut3ecTUEcTStyFzC7NGa12rG7tNxEg0m', '696969696969', NULL, '1991-02-06', 3),
 (8, 'ELEGI', 'elegi@gmail.com', 1, 1, '$2y$12$sWgEHbOQTneToTAi3oXo9uTwFC4Pq4G929T8lSJTvXc82C1l6OSiK', '095236541489', NULL, '2001-10-16', 1),
 (9, '7PIECE', '7piece@gmail.com', 1, 1, '$2y$12$C9iMukJfcUZUQkZIlj3k0.Q4xwvDsqs7ysOCqe/07JbVpbkJpKc1m', '095236541299', NULL, '2021-02-02', 1),
 (10, 'Alpha Channel Inc.', 'alphachannel@gmail.com', 1, 1, '$2y$12$gYSebUa5S/6gUG0b6LR4z.bRiEMXsJuyVZ3nhXmqJ/MFYIBRu4qle', '095236541200', NULL, '2018-02-07', 1),
-(11, 'bocil 10 tahun', 'bocil10tahun@gmail.com', 2, 1, '$2y$12$9kpS5sR9L4E/oH.Id4Ozz.1T77nSraHD8W.tcGP7jTs3HcIG2JEDi', '1010101010', '20250115135855_67875caf897ae.jpg', '2015-01-01', 2);
+(11, 'bocil 10 tahun', 'bocil10tahun@gmail.com', 2, 1, '$2y$12$9kpS5sR9L4E/oH.Id4Ozz.1T77nSraHD8W.tcGP7jTs3HcIG2JEDi', '1010101010', '20250115135855_67875caf897ae.jpg', '2015-01-01', 2),
+(12, 'Soto4Game', 'soto4game@gmail.com', 1, 1, '$2y$12$YKUsYJ0ZItBe6V2lN1Xec.v983Twe1rFEXBEiQV6wzPB7MM70man6', '095236541254', NULL, '2020-01-20', 1),
+(13, 'soto', 'soto@gmail.com', 2, 1, '$2y$12$GR0y.gM7CYQEH9hrQrefV.ZbmYMWcZabXhdC.h0JFVsNY.KuQ5YWK', '095236541252', NULL, '2007-06-21', 3);
 
 --
 -- Indexes for dumped tables
@@ -396,7 +398,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `checkouts`
