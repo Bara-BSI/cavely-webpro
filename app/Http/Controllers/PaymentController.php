@@ -85,7 +85,7 @@ class PaymentController extends Controller
     {
         $payment = Payment::findOrFail($payment->id);
         $rules = [
-            'nama_bank' => 'required|max:255|unique:regions',
+            'nama_bank' => 'required|max:255|unique:payments',
             'hp' => 'required|min:10|max:13',
         ];
         $messages = [
@@ -100,10 +100,10 @@ class PaymentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Payment $id)
+    public function destroy(Payment $payment)
     {
-        $payment = Payment::findOrFail($id);
+        $payment = Payment::findOrFail($payment->id);
         $payment->delete();
-        return redirect() -> route('backend.region.index')->with('success', 'Data successfully deleted');
+        return redirect() -> route('backend.payment.index')->with('success', 'Data successfully deleted');
     }
 }

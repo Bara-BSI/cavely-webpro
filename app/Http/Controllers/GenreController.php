@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Game_Genre;
 use App\Models\Genre;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -98,10 +99,20 @@ class GenreController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Genre $genre)
     {
-        $genre = Genre::findOrFail($id);
+        $game_genres = Game_Genre::where('genres_id', $genre->id)->get();
+
+        foreach ($game_genres as $gameGenre) {
+            if ($gameGenre) { //check if $gameGenre exists
+                $gameGenre->delete();
+            }
+        }
+
         $genre->delete();
-        return redirect() -> route('backend.genre.index')->with('success', 'Data successfully removed');
+
+        return redirect()->route('backend.genre.index')->with('success', 'Data successfully removed');
     }
+
+
 }

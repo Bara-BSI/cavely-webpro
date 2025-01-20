@@ -15,7 +15,7 @@ class Payment extends Model
     ];
     protected $guarded = ['id'];
 
-    public function countries()
+    public function checkout()
     {
         return $this->hasMany(Checkout::class);
     }

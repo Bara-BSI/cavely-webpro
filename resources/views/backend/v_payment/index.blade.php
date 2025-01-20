@@ -34,7 +34,7 @@
                                             <form action="{{ route('backend.payment.destroy', $row->id) }}" method="post" style="display: inline-block">
                                                 @method('delete')
                                                 @csrf
-                                                <button type="submit" class="btn btn-danger btn-sm show_confirm" data-konf-delete="{{ $row->nama }}" title="Hapus Data">
+                                                <button type="submit" class="btn btn-danger btn-sm show_confirm" data-konf-delete="{{ $row->nama_bank }}" title="Hapus Data">
                                                     <i class="fas fa-trash"></i> Delete
                                                 </button>
                                             </form>
