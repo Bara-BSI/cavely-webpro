@@ -6,7 +6,8 @@
 <br>
 
 ## Cara Menggunakan
-1. Clone source code pada halaman ini
+0. Compose project laravel 10 terlebih dahulu
+1. Clone/download source code pada halaman ini lalu timpakan pada project
 2. Buat database baru pada MariaDB/MySQL (dapat menggunakan phpMyAdmin)
 3. Pada database baru, import game_publisher.sql
 4. Composer yang digunakan mengharuskan php versi 8.2 atau lebih, pastikan php yang dipilih pada Laragon sesuai atau update versi php pada Linux.
