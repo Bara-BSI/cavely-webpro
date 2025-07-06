@@ -145,12 +145,12 @@
                                             <div class="row">
                                                 <div class="col-2"></div>
                                                 <div class="col-4">
-                                                    <a href="#">
+                                                    <a href="{{ route('auth.redirect') }}">
                                                         <img src="{{ asset('image/google_logo.png') }}" alt="Google" width="100px" height="100px">
                                                     </a>
                                                 </div>
                                                 <div class="col-4">
-                                                    <a href="#">
+                                                    <a href="{{ route('discord.redirect') }}">
                                                         <img src="{{ asset('image/discord_logo.png') }}" alt="Discord" width="100px" height="100px">
                                                     </a>
                                                 </div>

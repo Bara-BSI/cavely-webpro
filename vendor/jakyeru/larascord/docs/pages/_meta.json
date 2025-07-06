@@ -1,0 +1,34 @@
+{
+  "index": "Introduction",
+  "version_compatibility": "Version Compatibility",
+  "upgrade_v4_to_v5": "Upgrading from v4 to v5",
+
+  "installation_separator": {
+    "title": "Installation",
+    "type": "separator"
+  },
+
+  "getting_started": "Getting Started",
+
+  "configuration": "Configuration",
+
+  "events": "Larascord Events",
+
+  "routes": "Routes",
+
+  "errors": "Possible Errors",
+
+  "api_separator": {
+    "title": "API",
+    "type": "separator"
+  },
+
+  "interacts_with_discord": "InteractsWithDiscord Trait",
+
+  "contact": {
+    "title": "Contact ↗",
+    "type": "page",
+    "href": "mailto:jakye@jakye.me",
+    "newWindow": true
+  }
+}

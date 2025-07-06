@@ -89,3 +89,21 @@ Route::resource('frontend/checkout', frontendCheckoutController::class, ['as' =>
 Route::delete('/reviews/{games_id}/{users_id}', [ReviewController::class, 'destroy'])->name('review.delete')->middleware('auth');
 
 Route::resource('frontend/user', frontendUserController::class, ['as' => 'frontend']);
+
+// API Google
+Route::get('/auth/redirect', [UserController::class, 'redirect'])->name('auth.redirect');
+Route::get('/auth/google/callback', [UserController::class, 'callback'])->name('auth.callback');
+
+// Logout
+Route::post('/logout', [UserController::class, 'logout'])->name('customer.logout');
+
+// Route untuk Customer 
+Route::resource('backend/customer', UserController::class, ['as' => 'backend'])->middleware('auth');
+
+// Route untuk Order
+// Route::post('/midtrans-callback', [frontendCheckoutController::class, 'callback']);
+Route::get('/order/complete', [frontendCheckoutController::class, 'store'])->name('order.complete');
+
+// API Discord
+Route::get('/auth/discord', [UserController::class, 'redirectDiscord'])->name('discord.redirect');
+Route::get('/auth/discord/callback', [UserController::class, 'callbackDiscord']);

@@ -175,12 +175,12 @@ unset($__errorArgs, $__bag); ?>
                                             <div class="row">
                                                 <div class="col-2"></div>
                                                 <div class="col-4">
-                                                    <a href="#">
+                                                    <a href="<?php echo e(route('auth.redirect')); ?>">
                                                         <img src="<?php echo e(asset('image/google_logo.png')); ?>" alt="Google" width="100px" height="100px">
                                                     </a>
                                                 </div>
                                                 <div class="col-4">
-                                                    <a href="#">
+                                                    <a href="<?php echo e(route('discord.redirect')); ?>">
                                                         <img src="<?php echo e(asset('image/discord_logo.png')); ?>" alt="Discord" width="100px" height="100px">
                                                     </a>
                                                 </div>

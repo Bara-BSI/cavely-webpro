@@ -66,49 +66,75 @@
                     $grandTotal += $game->where('id', $carts->games_id)->value('harga') * $carts->jumlah
                 @endphp
             @endforeach
-            <form action="{{ route('frontend.checkout.store') }}" method="post" class="form-horizontal col-12" enctype="multipart/form-data">
-                @csrf
-                    <div class="my-3">
-                        <div class="row">
-                            <div class="col-lg-3"></div>
-                            <div class="col-lg-9 d-inline-flex text-white">
-                                <h3 class="mx-auto my-auto">Grand Total :</h3>
-                                <h3 class="mx-auto my-auto d-inline-flex">
-                                    <span class="mr-3">IDR</span>
-                                    {{ $grandTotal }}
-                                </h3>
-                                <input type="hidden" name="carts" value="{{ $cart->pluck('id') }}">
-                                <input type="hidden" name="total_harga" value="{{ $grandTotal }}">
-                                <input type="hidden" name="tanggal_checkout" value="{{ today() }}">
-                                <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#collapsePayment" aria-expanded="false" aria-controls="collapsePayment">
-                                    Choose Payment Method
-                                </button>
-                            </div>
-                            <div class="collapse col-12 mt-3" id="collapsePayment">
-                                    <div class="card card-body text-center">
-                                        <div class="form-group">
-                                            <label for="payments_id">Payment Method</label>
-                                            <select name="payments_id" id="payments_id" class="form-control @error('payments_id')
-                                                is-invalid
-                                            @enderror">
-                                                <option value="" selected>--Choose Payment Method--</option>
-                                                @foreach ($payment as $n)
-                                                    <option value="{{ $n->id }}">{{ $n->nama_bank }}</option>
-                                                @endforeach
-                                            </select>
-                                            @error('payments_id')
-                                                <span class="invalid-feedback alert-danger" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                            @enderror
-                                        </div>
-                                        <button type="submit" class="btn btn-success">Confirm Order</button>
-                                    </div>
-                                </div>
+            {{-- <form method="post" class="form-horizontal col-12" enctype="multipart/form-data">
+                @csrf --}}
+                <div class="my-3 col-12">
+                    <div class="row">
+                        <div class="col-lg-3"></div>
+                        <div class="col-lg-9 d-inline-flex text-white">
+                            <h3 class="mx-auto my-auto">Grand Total :</h3>
+                            <h3 class="mx-auto my-auto d-inline-flex">
+                                <span class="mr-3">IDR</span>
+                                {{ $grandTotal }}
+                            </h3>
+                            <input type="hidden" name="carts" value="{{ $cart->pluck('id') }}">
+                            <input type="hidden" name="total_harga" value="{{ $grandTotal }}">
+                            <input type="hidden" name="tanggal_checkout" value="{{ today() }}">
+                            {{-- <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#collapsePayment" aria-expanded="false" aria-controls="collapsePayment">
+                                Choose Payment Method
+                            </button> --}}
+                            <button class="btn btn-primary" id="pay-button">
+                                Proceed
+                            </button>
                         </div>
+                        {{-- <div class="collapse col-12 mt-3" id="collapsePayment">
+                            <div class="card card-body text-center">
+                                <div class="form-group">
+                                    <label for="payments_id">Payment Method</label>
+                                    <select name="payments_id" id="payments_id" class="form-control @error('payments_id')
+                                        is-invalid
+                                    @enderror">
+                                        <option value="" selected>--Choose Payment Method--</option>
+                                        @foreach ($payment as $n)
+                                            <option value="{{ $n->id }}">{{ $n->nama_bank }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('payments_id')
+                                        <span class="invalid-feedback alert-danger" role="alert">
+                                            {{ $message }}
+                                        </span>
+                                    @enderror
+                                </div>
+                                <button type="submit" class="btn btn-success">Confirm Order</button>
+                            </div>
+                        </div> --}}
                     </div>
-            </form>
-                    
+                </div>
+            {{-- </form>   --}}
         </div>
     </div>
+    <script>
+        var payButton = document.getElementById('pay-button');
+        payButton.addEventListener('click', function() {
+            window.snap.pay('{{ $snapToken }}', {
+                onSuccess: function(result) {
+                    alert("payment success!");
+                    console.log(result);
+                    window.location.href = "{{ route('order.complete') }}";
+                },
+                onPending: function(result) {
+                    alert("waiting for your payment!");
+                    console.log(result);
+                },
+                onError: function(result) {
+                    alert("payment failed!");
+                    console.log(result);
+                },
+                onClose: function(result) {
+                    alert("you closed the popup without finishing the payment!");
+                    console.log(result);
+                }
+            });
+        });
+    </script>
 @endsection

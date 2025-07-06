@@ -21,6 +21,9 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script src="https://app.sandbox.midtrans.com/snap/snap.js" type="text/javascript">
+        data-client-key="<?php echo e(config('midtrans.client_key')); ?>"
+    </script>
     <style>
         .margintop {
             height: 9px;
