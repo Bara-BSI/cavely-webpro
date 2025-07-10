@@ -6,6 +6,7 @@ use App\Helpers\ImageHelper;
 use App\Models\Country;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class frontendUserController extends Controller
@@ -91,7 +92,18 @@ class frontendUserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $user = User::findOrFail($id);
+        $negara = Country::orderBy('nama_negara')->get();
+
+        if (Auth::user()->role != 0 && Auth::user()->id != $user->id) {  // Allow non-admins to edit their own profiles
+             return back()->with('error', 'Other user\'s setting can only be accessed by Admin.');
+        }
+
+        return view('frontend.v_user.edit', [
+            'judul' => 'Profile Info',
+            'edit' => $user,
+            'negara' => $negara
+        ]);
     }
 
     /**
@@ -99,7 +111,50 @@ class frontendUserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        //ddd($request);
+        $user = User::findOrFail($id);
+        $rules = [
+            'nama' => 'required|max:255',
+            'role' => 'required',
+            'hp' => 'required|min:10|max:13',
+            'foto' => 'image|mimes:jpeg,jpg,png,gif|file|max:1024',
+            'tanggal_lahir' => 'required|date:Y-m-d',
+            'countries_id' => 'required|exists:countries,id',
+        ];
+        $messages = [
+            'foto.image' => 'Format gambar gunakan file dengan ekstensi jpeg, jpg, png, atau gif.',
+            'foto.max' => 'Ukuran file gambar Maksimal adalah 1024 KB.'
+        ];
+
+        if ($request->email != $user->email) {
+            $rules['email'] = 'required|max:255|email|unique:users';
+        }
+        $validatedData = $request->validate($rules, $messages);
+
+        // Menggunakan ImageHelper
+        try {
+            if ($request->file('foto')) {
+                // hapus gambar lama
+                if ($user->foto) {
+                    $oldImagePath = public_path('storage/img-user/') . $user->foto;
+                    if (file_exists($oldImagePath)) {
+                        unlink($oldImagePath);
+                    }
+                }
+                $file = $request->file('foto');
+                $extension = $file->getClientOriginalExtension();
+                $originalFileName = date('YmdHis') . '_' . uniqid() . '.' . $extension;
+                $directory = 'storage/img-user/';
+                // Simpan gambar dengan ukuran yang ditentukan
+                ImageHelper::uploadAndResize($file, $directory, $originalFileName, 385, 400); // null (jika tinggi otomatis)
+                // Simpan nama file asli di database
+                $validatedData['foto'] = $originalFileName;
+            }
+        } catch (\Exception $e) {
+            return back()->withErrors('Can\'t upload the image:' . $e->getMessage());
+        }
+        $user->update($validatedData);
+        return redirect()->route('frontend.beranda')->with('success', 'Data successfully updated');
     }
 
     /**

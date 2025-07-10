@@ -26,7 +26,11 @@ class User extends Authenticatable
         'hp',
         'foto',
         'tanggal_lahir',
-        'countries_id'
+        'countries_id',
+        'google_id',
+        'google_token',
+        'discord_id',
+        'discord_token',
     ];
     protected $guarded = ['id'];
 

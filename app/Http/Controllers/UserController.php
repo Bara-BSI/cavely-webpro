@@ -9,6 +9,7 @@ use App\Helpers\ImageHelper;
 use App\Models\Country;
 use App\Models\Region;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Socialite\Facades\Socialite;
 
 class UserController extends Controller
 {
@@ -201,5 +202,104 @@ class UserController extends Controller
             'country' => $country,
             'region' => $region,
         ]);
+    }
+
+    // Redirect ke Google
+    public function redirect()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    // Callback dari Google
+    public function callback()
+    {
+        try {
+            $socialUser = Socialite::driver('google')->user();
+
+            // Cek apakah email sudah terdaftar
+            $registeredUser = User::where('email', $socialUser->email)->first();
+
+            if (!$registeredUser) {
+                // Buat user baru
+                $user = User::create([
+                    'nama' => $socialUser->name,
+                    'email' => $socialUser->email,
+                    'role' => 2, // Role customer
+                    'status' => 1, // Status aktif
+                    'password' => Hash::make('default_password'), // Password default (opsional)
+                    'hp' => '------------',
+                    'tanggal_lahir' => '2000-01-01',
+                    'countries_id' => 1,
+                    'google_id' => $socialUser->id,
+                    'google_token' => $socialUser->token,
+                ]);
+
+                // Login pengguna baru
+                Auth::login($user);
+            } else {
+                // Jika email sudah terdaftar, langsung login
+                Auth::login($registeredUser);
+            }
+
+            // Redirect ke halaman utama
+            return redirect()->intended('frontend/beranda');
+        } catch (\Exception $e) {
+            // Redirect ke halaman utama jika terjadi kesalahan
+            return redirect('frontend/beranda')->with('error', 'Problem occured when trying to login with Google.');
+        }
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout(); // Logout pengguna
+        $request->session()->invalidate(); // Hapus session
+        $request->session()->regenerateToken(); // Regenerate token CSRF
+
+        return redirect('/')->with('success', 'Anda telah berhasil logout.');
+    }
+
+    // Redirect ke Discord
+    public function redirectDiscord()
+    {
+        return Socialite::driver('discord')->redirect();
+    }
+
+    public function callbackDiscord()
+    {
+
+        try {
+            $socialUser = Socialite::driver('discord')->user();
+
+            // Cek apakah email sudah terdaftar
+            $registeredUser = User::where('email', $socialUser->email)->first();
+
+            if (!$registeredUser) {
+                // Buat user baru
+                $user = User::create([
+                    'nama' => $socialUser->username . '#' . $socialUser->discriminator,
+                    'email' => $socialUser->email,
+                    'role' => 2, // Role customer
+                    'status' => 1, // Status aktif
+                    'password' => Hash::make('default_password'), // Password default (opsional)
+                    'hp' => '------------',
+                    'tanggal_lahir' => '2000-01-01',
+                    'countries_id' => 1,
+                    'discord_id' => $socialUser->id,
+                    'discord_token' => $socialUser->token,
+                ]);
+
+                // Login pengguna baru
+                Auth::login($user);
+            } else {
+                // Jika email sudah terdaftar, langsung login
+                Auth::login($registeredUser);
+            }
+
+            // Redirect ke halaman utama
+            return redirect()->intended('frontend/beranda');
+        } catch (\Exception $e) {
+            // Redirect ke halaman utama jika terjadi kesalahan
+            return redirect('frontend/beranda')->with('error', 'Problem occured when trying to login with Discord.');
+        }
     }
 }

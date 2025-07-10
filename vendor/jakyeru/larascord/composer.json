@@ -1,0 +1,37 @@
+{
+    "name": "jakyeru/larascord",
+    "description": "Larascord is a package that allows you to authenticate users in your Laravel application using Discord.",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Jakyeru\\Larascord\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Jakyeru\\Larascord\\Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jakye",
+            "email": "jakyeru@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Jakyeru\\Larascord\\LarascordServiceProvider"
+            ]
+        }
+    },
+    "require-dev": {
+        "orchestra/testbench": "^8"
+    },
+    "require": {
+        "php": "^8.1|^8.2",
+        "laravel/framework": "^10",
+        "guzzlehttp/guzzle": "^7.5",
+        "laravel/breeze": "^v1.21.0"
+    }
+}
