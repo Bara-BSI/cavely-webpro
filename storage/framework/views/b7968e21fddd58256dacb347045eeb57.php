@@ -102,7 +102,7 @@
                                         <label for="jumlah" class="my-auto"><h4>Item amount: </h4></label>
                                     </div>
                                     <div class="col-3">
-                                        <input class="form-control" type="number" name="jumlah" id="jumlah">
+                                        <input class="form-control" type="number" name="jumlah" id="jumlah" aria-valuemin="1" value="1">
                                     </div>
                                     <div class="col-3">
                                         <button class="btn btn-primary" type="submit">Submit</button>

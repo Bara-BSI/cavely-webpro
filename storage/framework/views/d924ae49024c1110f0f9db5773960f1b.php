@@ -320,17 +320,17 @@
             var konfdelete = $(this).data("konf-delete");
             event.preventDefault();
             Swal.fire({
-                title: 'Konfirmasi Hapus Data?',
-                html: "Data yang dihapus <b>" + konfdelete + "</b> tidak dapat dikembalikan!",
+                title: 'Are you sure?',
+                html: "<b>" + konfdelete + "</b> will not be able to be recovered!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Ya, dihapus',
-                cancelButtonText: 'Batal'
+                confirmButtonText: 'Delete',
+                cancelButtonText: 'Cancel'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    Swal.fire('Terhapus!', 'Data berhasil dihapus.', 'success')
+                    Swal.fire('Deleted!', 'Data successfully deleted.', 'success')
                         .then(() => {
                             form.submit();
                         });

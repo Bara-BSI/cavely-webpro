@@ -31,7 +31,6 @@
         }
 
         .foto-preview {
-            display: none;
             width: 100%;
         }
 
@@ -244,7 +243,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mr-auto align-items-center nav">
                 <li class="nav-item mx-2">
-                    <a class="nav-link" href="#">Store</a>
+                    <a class="nav-link" href="<?php echo e(route('frontend.beranda')); ?>">Store</a>
                 </li>
                 <li class="nav-item mx-2">
                     <a class="nav-link" href="#">Library</a>
@@ -362,30 +361,32 @@
                             <?php if(Auth::user()->role != 2): ?>
                                 <a href="<?php echo e(route('backend.beranda')); ?>" class="dropdown-item usersetting">Management Dashboard</a>
                             <?php endif; ?>                  
-                            <a class="dropdown-item usersetting" href="#">View My Profile</a>
+                            <a class="dropdown-item usersetting" href="<?php echo e(route('frontend.user.edit', Auth::user()->id)); ?>">View My Profile</a>
                             <hr style="border-top: 3px solid rgb(255,255,255,0.5);">
                             <a class="dropdown-item usersetting" href="#">Choose Another Account</a>
                             <a class="dropdown-item usersetting2" href="#" onclick="event.preventDefault(); document.getElementById('keluar-app').submit();">Sign Out</a>
                         </div>
                     </li>
                 <?php endif; ?>
-                <li class="nav-item mx-2">
-                    <a class="nav-link position-relative" href="<?php echo e(route('frontend.checkout.create')); ?>" id="cart">
-                        <i class="fa fa-shopping-cart mx-auto" aria-hidden="true" style="color: black;"></i>
-                        <?php
-                            if (Auth::check()){
+                <?php if(Auth::check()): ?>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link position-relative" href="<?php echo e(route('frontend.checkout.create')); ?>" id="cart">
+                            <i class="fa fa-shopping-cart mx-auto" aria-hidden="true" style="color: black;"></i>
+                            <?php
+                                if (Auth::check()){
 
-                            $cartCount = DB::table('carts')->where('checkouts_id', Null)->where('users_id', auth()->user()->id)->count();
-                            }
-                        ?>
-                        <?php if(Auth::check() && $cartCount != 0): ?>
-                            <span class="position-absolute d-flex justify-content-center align-items-center" id="cartnot">
-                                <?php echo e($cartCount); ?>
+                                $cartCount = DB::table('carts')->where('checkouts_id', Null)->where('users_id', auth()->user()->id)->count();
+                                }
+                            ?>
+                            <?php if(Auth::check() && $cartCount != 0): ?>
+                                <span class="position-absolute d-flex justify-content-center align-items-center" id="cartnot">
+                                    <?php echo e($cartCount); ?>
 
-                            </span>
-                        <?php endif; ?>
-                    </a>
-                </li>
+                                </span>
+                            <?php endif; ?>
+                        </a>
+                    </li>
+                <?php endif; ?>
             </ul>
         </div>
     </nav>
@@ -529,17 +530,17 @@
             var konfdelete = $(this).data("konf-delete");
             event.preventDefault();
             Swal.fire({
-                title: 'Konfirmasi Hapus Data?',
-                html: "Data yang dihapus <b>" + konfdelete + "</b> tidak dapat dikembalikan!",
+                title: 'Are you sure?',
+                html: "<b>" + konfdelete + "</b> will not be able to be recovered!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Ya, dihapus',
-                cancelButtonText: 'Batal'
+                confirmButtonText: 'Delete',
+                cancelButtonText: 'Cancel'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    Swal.fire('Terhapus!', 'Data berhasil dihapus.', 'success')
+                    Swal.fire('Deleted!', 'Data successfully deleted.', 'success')
                         .then(() => {
                             form.submit();
                         });

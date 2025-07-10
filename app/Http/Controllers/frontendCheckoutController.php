@@ -36,7 +36,7 @@ class frontendCheckoutController extends Controller
 
 
         if ($cart->isEmpty()) {
-            return redirect()->back()->with('error', 'You have no items in cart.');
+            return redirect()->route('frontend.beranda')->with('error', 'You have no items in cart.');
         }
 
         // Hitung total harga produk

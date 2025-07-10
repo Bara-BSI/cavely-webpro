@@ -126,6 +126,6 @@ class CheckoutController extends Controller
         $checkout = Checkout::findOrFail($checkout->id);
         Cart::where('checkouts_id', $checkout->id)->update(['checkouts_id' => null]); // Correct the where clause
         $checkout->delete();
-        return redirect()->route('backend.checkout.index')->with('success', 'Data successfully deleted');
+        return redirect()->route('backend.checkout.index');
     }
 }
